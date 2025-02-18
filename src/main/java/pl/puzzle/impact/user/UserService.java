@@ -27,8 +27,7 @@ public class UserService {
     }
 
     public User createUser(UserCreateDTO userCreateDTO) {
-        User user = new User();
-        user.setActive(userCreateDTO.isActive());
+        User user = User.createUser(userCreateDTO);
         return userRepository.save(user);
     }
 
