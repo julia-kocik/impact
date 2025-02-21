@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.puzzle.impact.user.dto.ActivateUserDTO;
 import pl.puzzle.impact.user.dto.UserCreateDTO;
-import pl.puzzle.impact.user.dto.UserUpdateDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,10 +22,11 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final CreateUserService createUserService;
 
-    @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, CreateUserService createUserService) {
         this.userService = userService;
+        this.createUserService = createUserService;
     }
 
     @GetMapping
@@ -43,13 +44,13 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody UserCreateDTO userCreateDTO) {
-        return ResponseEntity.ok(userService.createUser(userCreateDTO));
+        return ResponseEntity.ok(createUserService.createUser(userCreateDTO));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTO userUpdateDTO) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody ActivateUserDTO activateUserDTO) {
         try {
-            User updatedUser = userService.updateUser(id, userUpdateDTO);
+            User updatedUser = userService.updateUser(id, activateUserDTO);
             return ResponseEntity.ok(updatedUser);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
