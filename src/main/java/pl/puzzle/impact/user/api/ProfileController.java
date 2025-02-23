@@ -12,6 +12,7 @@ import pl.puzzle.impact.user.ProfileService;
 import pl.puzzle.impact.user.dto.ProfileUpdateDTO;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/profile")
@@ -23,13 +24,13 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Profile> getProfileById(@PathVariable Long id) {
+    public ResponseEntity<Profile> getProfileById(@PathVariable UUID id) {
         Optional<Profile> profile = profileService.getProfileById(id);
         return profile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Profile> updateProfile(@PathVariable Long id, @RequestBody ProfileUpdateDTO profileUpdateDTO) {
+    public ResponseEntity<Profile> updateProfile(@PathVariable UUID id, @RequestBody ProfileUpdateDTO profileUpdateDTO) {
         try {
             Profile updatedProfile = profileService.updateProfile(id, profileUpdateDTO);
             return ResponseEntity.ok(updatedProfile);

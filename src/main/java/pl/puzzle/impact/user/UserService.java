@@ -5,6 +5,7 @@ import pl.puzzle.impact.user.dto.ActivateUserDTO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -19,11 +20,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id) {
+    public Optional<User> getUserById(UUID id) {
         return userRepository.findById(id);
     }
 
-    public User updateUser(Long id, ActivateUserDTO userUpdateDTO) {
+    public User updateUser(UUID id, ActivateUserDTO userUpdateDTO) {
         return userRepository.findById(id).map(user -> {
             user.setActive(userUpdateDTO.isActive());
             return userRepository.save(user);
@@ -31,7 +32,7 @@ public class UserService {
     }
 
 
-    public void deleteUser(Long id) {
+    public void deleteUser(UUID id) {
         userRepository.deleteById(id);
     }
 }
