@@ -1,8 +1,6 @@
 package pl.puzzle.impact.company;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -21,8 +19,8 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 @Getter
 public class UserCompany {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     private UUID userId;

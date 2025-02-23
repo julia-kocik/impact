@@ -15,7 +15,7 @@ import java.util.UUID;
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @NoArgsConstructor(access = PRIVATE, force = true)
 @AllArgsConstructor(access = PRIVATE)
 @Builder

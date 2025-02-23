@@ -1,4 +1,5 @@
 package pl.puzzle.impact.company;
+
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,6 +15,7 @@ public class UserCompanyService {
 
     public void addUserToCompany(UUID userId, UUID companyId) {
         UserCompany userCompany = UserCompany.builder()
+                .id(UUID.randomUUID())
                 .userId(userId)
                 .companyId(companyId)
                 .build();

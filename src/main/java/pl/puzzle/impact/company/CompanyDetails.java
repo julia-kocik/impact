@@ -21,6 +21,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 @Getter
 public class CompanyDetails {
+
     @Id
     private UUID id;
 

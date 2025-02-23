@@ -22,17 +22,16 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 @Getter
 public class Company {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     private final LocalDateTime createdAt;
 
     public static Company createCompany() {
         return Company.builder()
+                .id(UUID.randomUUID())
                 .createdAt(LocalDateTime.now())
                 .build();
     }
-
-
 }
