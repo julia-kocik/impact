@@ -1,8 +1,6 @@
 package pl.puzzle.impact.user;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -12,11 +10,12 @@ import lombok.NoArgsConstructor;
 import pl.puzzle.impact.user.dto.UserCreateDTO;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @NoArgsConstructor(access = PRIVATE, force = true)
 @AllArgsConstructor(access = PRIVATE)
 @Builder
@@ -24,8 +23,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final Long id;
+    private final UUID id;
 
     private boolean active;
 
@@ -33,6 +31,7 @@ public class User {
 
     public static User createUser(UserCreateDTO userCreateDTO) {
         return User.builder()
+                .id(UUID.randomUUID())
                 .active(userCreateDTO.isActive())
                 .createdAt(LocalDateTime.now())
                 .build();
