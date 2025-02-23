@@ -6,4 +6,7 @@
 
     <include file="/db/changelog/changelog-user.xml"/>
     <include file="/db/changelog/changelog-profile.xml"/>
+    <include file="/db/changelog/changelog-company.xml"/>
+    <include file="/db/changelog/changelog-user_company.xml"/>
+    <include file="/db/changelog/changelog-company_details.xml"/>
 </databaseChangeLog>
