@@ -26,25 +26,10 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    private String industry;
-
-    private int size;
-
-    private String logo;
-
-    private String description;
-
     private final LocalDateTime createdAt;
 
-    public static Company createCompany(CompanyCreateDTO companyCreateDTO) {
+    public static Company createCompany() {
         return Company.builder()
-                .name(companyCreateDTO.getName())
-                .industry(companyCreateDTO.getIndustry())
-                .size(companyCreateDTO.getSize())
-                .logo(companyCreateDTO.getLogo())
-                .description(companyCreateDTO.getDescription())
                 .createdAt(LocalDateTime.now())
                 .build();
     }

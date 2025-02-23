@@ -18,17 +18,9 @@ public class ProfileService {
     }
 
     public Profile updateProfile(Long id, ProfileUpdateDTO profileUpdateDTO) {
-        return profileRepository.findById(id).map(profile -> {
-            if (profileUpdateDTO.getUsername() != null && !profileUpdateDTO.getUsername().isEmpty()) {
-                profile.setUsername(profileUpdateDTO.getUsername());
-            }
-            if (profileUpdateDTO.getPassword() != null && !profileUpdateDTO.getPassword().isEmpty()) {
-                profile.setPassword(profileUpdateDTO.getPassword());
-            }
-            if (profileUpdateDTO.getProfileImage() != null && !profileUpdateDTO.getProfileImage().isEmpty()) {
-                profile.setProfileImage(profileUpdateDTO.getProfileImage());
-            }
-            return profileRepository.save(profile);
-        }).orElseThrow(() -> new RuntimeException("User not found"));
+        Profile profile = profileRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        profile.updateProfile(profileUpdateDTO);
+        profileRepository.save(profile);
+        return profile;
     }
 }

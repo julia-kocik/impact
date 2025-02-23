@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.puzzle.impact.user.dto.ProfileUpdateDTO;
 import pl.puzzle.impact.user.dto.UserCreateDTO;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -42,15 +43,9 @@ public class Profile {
                 .build();
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    void updateProfile(ProfileUpdateDTO profileUpdateDTO) {
+        this.username = profileUpdateDTO.getUsername();
+        this.email = profileUpdateDTO.getEmail();
+        this.password = profileUpdateDTO.getPassword();
     }
 }
