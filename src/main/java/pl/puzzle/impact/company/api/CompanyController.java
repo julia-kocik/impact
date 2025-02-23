@@ -14,6 +14,7 @@ import pl.puzzle.impact.company.dto.CompanyCreateDTO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/company")
@@ -27,7 +28,7 @@ public class CompanyController {
     }
 
     @PostMapping("/{userId}")
-    public ResponseEntity<Company> createCompany(@RequestBody CompanyCreateDTO companyCreateDTO, @PathVariable Long userId) {
+    public ResponseEntity<Company> createCompany(@RequestBody CompanyCreateDTO companyCreateDTO, @PathVariable UUID userId) {
         return ResponseEntity.ok(createCompanyService.createCompany(companyCreateDTO, userId));
     }
 
@@ -38,7 +39,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{companyId}")
-    public ResponseEntity<Company> getCompanyById(@PathVariable Long companyId) {
+    public ResponseEntity<Company> getCompanyById(@PathVariable UUID companyId) {
         Optional<Company> company = companyService.getCompanyById(companyId);
         return company.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }

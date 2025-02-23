@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import pl.puzzle.impact.company.dto.CompanyCreateDTO;
 import pl.puzzle.impact.company.dto.CompanyDetailsUpdateDTO;
 
+import java.util.UUID;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
@@ -20,7 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 public class CompanyDetails {
     @Id
-    private Long id;
+    private UUID id;
 
     private String name;
 
@@ -32,7 +34,7 @@ public class CompanyDetails {
 
     private String description;
 
-    static CompanyDetails createCompanyDetails(CompanyCreateDTO companyCreateDTO, Long companyId) {
+    static CompanyDetails createCompanyDetails(CompanyCreateDTO companyCreateDTO, UUID companyId) {
         return CompanyDetails.builder()
                 .id(companyId)
                 .name(companyCreateDTO.getName())

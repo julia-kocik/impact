@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
@@ -21,9 +23,9 @@ import static lombok.AccessLevel.PRIVATE;
 public class UserCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 
-    private Long userId;
+    private UUID userId;
 
-    private Long companyId;
+    private UUID companyId;
 }

@@ -3,6 +3,8 @@ package pl.puzzle.impact.company;
 import org.springframework.stereotype.Service;
 import pl.puzzle.impact.company.dto.CompanyCreateDTO;
 
+import java.util.UUID;
+
 @Service
 public class CreateCompanyService {
     private final CompanyRepository companyRepository;
@@ -15,7 +17,7 @@ public class CreateCompanyService {
         this.companyDetailsRepository = companyDetailsRepository;
     }
 
-    public Company createCompany(CompanyCreateDTO companyCreateDTO, Long userId) {
+    public Company createCompany(CompanyCreateDTO companyCreateDTO, UUID userId) {
         // sprawdzenie czy user istnieje
         Company company = Company.createCompany();
         companyRepository.save(company);

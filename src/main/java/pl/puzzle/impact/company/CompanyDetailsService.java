@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.puzzle.impact.company.dto.CompanyDetailsUpdateDTO;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CompanyDetailsService {
@@ -14,11 +15,11 @@ public class CompanyDetailsService {
         this.companyDetailsRepository = companyDetailsRepository;
     }
 
-    public Optional<CompanyDetails> getCompanyDetailsById(Long id) {
+    public Optional<CompanyDetails> getCompanyDetailsById(UUID id) {
         return companyDetailsRepository.findById(id);
     }
 
-    public CompanyDetails updateCompanyDetails(CompanyDetailsUpdateDTO companyDetailsUpdateDTO, Long id) {
+    public CompanyDetails updateCompanyDetails(CompanyDetailsUpdateDTO companyDetailsUpdateDTO, UUID id) {
         CompanyDetails companyDetails = companyDetailsRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         companyDetails.updateCompanyDetails(companyDetailsUpdateDTO);
         companyDetailsRepository.save(companyDetails);

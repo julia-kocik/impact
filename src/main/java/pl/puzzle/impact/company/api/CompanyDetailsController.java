@@ -12,6 +12,7 @@ import pl.puzzle.impact.company.CompanyDetailsService;
 import pl.puzzle.impact.company.dto.CompanyDetailsUpdateDTO;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/company-details")
@@ -23,13 +24,13 @@ public class CompanyDetailsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CompanyDetails> getCompanyDetailsById(@PathVariable Long id) {
+    public ResponseEntity<CompanyDetails> getCompanyDetailsById(@PathVariable UUID id) {
         Optional<CompanyDetails> companyDetails = companyDetailsService.getCompanyDetailsById(id);
         return companyDetails.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<CompanyDetails> updateCompanyDetails(@PathVariable Long id, @RequestBody CompanyDetailsUpdateDTO companyDetailsUpdateDTO) {
+    public ResponseEntity<CompanyDetails> updateCompanyDetails(@PathVariable UUID id, @RequestBody CompanyDetailsUpdateDTO companyDetailsUpdateDTO) {
         try {
             CompanyDetails updatedCompanyDetails = companyDetailsService.updateCompanyDetails(companyDetailsUpdateDTO, id);
             return ResponseEntity.ok(updatedCompanyDetails);
