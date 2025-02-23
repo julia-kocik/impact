@@ -1,5 +1,10 @@
 package pl.puzzle.impact.user.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ProfileUpdateDTO {
     private String username;
     private String email;
