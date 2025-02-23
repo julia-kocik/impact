@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.puzzle.impact.user.dto.UserCreateDTO;
 
+import java.util.UUID;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
@@ -20,7 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 public class Profile {
     @Id
-    private Long id;
+    private UUID id;
 
     private String username;
 
@@ -32,7 +34,7 @@ public class Profile {
 
     private String profileImage;
 
-    public static Profile createProfile(UserCreateDTO profileCreateDTO, Long userId) {
+    public static Profile createProfile(UserCreateDTO profileCreateDTO, UUID userId) {
         return Profile.builder()
                 .id(userId)
                 .username(profileCreateDTO.getUsername())
