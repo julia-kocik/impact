@@ -1,7 +1,6 @@
 package pl.puzzle.impact.user.api;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.puzzle.impact.user.Profile;
 import pl.puzzle.impact.user.ProfileService;
-import pl.puzzle.impact.user.dto.ProfileUpdateDTO;
+import pl.puzzle.impact.user.dto.ProfileUpdateDto;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -23,16 +21,10 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Profile> getProfileById(@PathVariable UUID id) {
-        Optional<Profile> profile = profileService.getProfileById(id);
-        return profile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
     @PatchMapping("/{id}")
-    public ResponseEntity<Profile> updateProfile(@PathVariable UUID id, @RequestBody ProfileUpdateDTO profileUpdateDTO) {
+    public ResponseEntity<Profile> updateProfile(@PathVariable UUID id, @RequestBody ProfileUpdateDto profileUpdateDto) {
         try {
-            Profile updatedProfile = profileService.updateProfile(id, profileUpdateDTO);
+            Profile updatedProfile = profileService.updateProfile(id, profileUpdateDto);
             return ResponseEntity.ok(updatedProfile);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

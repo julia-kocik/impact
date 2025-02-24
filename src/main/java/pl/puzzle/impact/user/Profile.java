@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.puzzle.impact.user.dto.ProfileUpdateDTO;
+import pl.puzzle.impact.user.dto.ProfileUpdateDto;
 import pl.puzzle.impact.user.dto.UserCreateDTO;
 
 import java.util.UUID;
@@ -45,7 +45,7 @@ public class Profile {
                 .build();
     }
 
-    void updateProfile(ProfileUpdateDTO profileUpdateDTO) {
+    void updateProfile(ProfileUpdateDto profileUpdateDTO) {
         this.username = profileUpdateDTO.getUsername();
         this.email = profileUpdateDTO.getEmail();
         this.password = profileUpdateDTO.getPassword();

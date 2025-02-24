@@ -1,7 +1,7 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.user.dto.ProfileUpdateDTO;
+import pl.puzzle.impact.user.dto.ProfileUpdateDto;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -18,7 +18,7 @@ public class ProfileService {
         return profileRepository.findById(id);
     }
 
-    public Profile updateProfile(UUID id, ProfileUpdateDTO profileUpdateDTO) {
+    public Profile updateProfile(UUID id, ProfileUpdateDto profileUpdateDTO) {
         Profile profile = profileRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         profile.updateProfile(profileUpdateDTO);
         profileRepository.save(profile);
