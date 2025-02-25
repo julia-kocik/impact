@@ -7,7 +7,7 @@ import jakarta.persistence.PersistenceContext;
 public class BaseQueryDslQueryService {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public BaseQueryDslQueryService(EntityManager entityManager) {
         this.entityManager = entityManager;
