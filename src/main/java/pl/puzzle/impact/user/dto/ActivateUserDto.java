@@ -5,10 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ActivateUserDTO {
+public class ActivateUserDto {
     private boolean active;
 
-    public ActivateUserDTO(boolean active) {
+    public ActivateUserDto(boolean active) {
         this.active = active;
     }
 }

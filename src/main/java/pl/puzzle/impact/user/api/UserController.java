@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.puzzle.impact.user.CreateUserService;
 import pl.puzzle.impact.user.User;
 import pl.puzzle.impact.user.UserService;
-import pl.puzzle.impact.user.dto.ActivateUserDTO;
-import pl.puzzle.impact.user.dto.UserCreateDTO;
+import pl.puzzle.impact.user.dto.ActivateUserDto;
+import pl.puzzle.impact.user.dto.UserCreateDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,14 +45,14 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserCreateDTO userCreateDTO) {
-        return ResponseEntity.ok(createUserService.createUser(userCreateDTO));
+    public ResponseEntity<User> createUser(@RequestBody UserCreateDto userCreateDto) {
+        return ResponseEntity.ok(createUserService.createUser(userCreateDto));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody ActivateUserDTO activateUserDTO) {
+    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody ActivateUserDto activateUserDto) {
         try {
-            User updatedUser = userService.updateUser(id, activateUserDTO);
+            User updatedUser = userService.updateUser(id, activateUserDto);
             return ResponseEntity.ok(updatedUser);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.puzzle.impact.company.dto.CompanyCreateDTO;
-import pl.puzzle.impact.company.dto.CompanyDetailsUpdateDTO;
+import pl.puzzle.impact.company.dto.CompanyCreateDto;
+import pl.puzzle.impact.company.dto.CompanyDetailsUpdateDto;
 
 import java.util.UUID;
 
@@ -35,22 +35,22 @@ public class CompanyDetails {
 
     private String description;
 
-    static CompanyDetails createCompanyDetails(CompanyCreateDTO companyCreateDTO, UUID companyId) {
+    static CompanyDetails createCompanyDetails(CompanyCreateDto companyCreateDto, UUID companyId) {
         return CompanyDetails.builder()
                 .id(companyId)
-                .name(companyCreateDTO.getName())
-                .industry(companyCreateDTO.getIndustry())
-                .size(companyCreateDTO.getSize())
-                .logo(companyCreateDTO.getLogo())
-                .description(companyCreateDTO.getDescription())
+                .name(companyCreateDto.getName())
+                .industry(companyCreateDto.getIndustry())
+                .size(companyCreateDto.getSize())
+                .logo(companyCreateDto.getLogo())
+                .description(companyCreateDto.getDescription())
                 .build();
     }
 
-    void updateCompanyDetails(CompanyDetailsUpdateDTO companyDetailsUpdateDTO) {
-        this.name = companyDetailsUpdateDTO.getName();
-        this.industry = companyDetailsUpdateDTO.getIndustry();
-        this.size = companyDetailsUpdateDTO.getSize();
-        this.logo = companyDetailsUpdateDTO.getLogo();
-        this.description = companyDetailsUpdateDTO.getDescription();
+    void updateCompanyDetails(CompanyDetailsUpdateDto companyDetailsUpdateDto) {
+        this.name = companyDetailsUpdateDto.getName();
+        this.industry = companyDetailsUpdateDto.getIndustry();
+        this.size = companyDetailsUpdateDto.getSize();
+        this.logo = companyDetailsUpdateDto.getLogo();
+        this.description = companyDetailsUpdateDto.getDescription();
     }
 }

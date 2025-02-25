@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.puzzle.impact.user.dto.UserCreateDTO;
+import pl.puzzle.impact.user.dto.UserCreateDto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -29,10 +29,10 @@ public class User {
 
     private final LocalDateTime createdAt;
 
-    public static User createUser(UserCreateDTO userCreateDTO) {
+    public static User createUser(UserCreateDto userCreateDto) {
         return User.builder()
                 .id(UUID.randomUUID())
-                .active(userCreateDTO.isActive())
+                .active(userCreateDto.isActive())
                 .createdAt(LocalDateTime.now())
                 .build();
     }

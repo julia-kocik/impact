@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.puzzle.impact.user.Role;
 import pl.puzzle.impact.user.RoleService;
-import pl.puzzle.impact.user.dto.RoleCreateDTO;
-import pl.puzzle.impact.user.dto.RoleUpdateDTO;
+import pl.puzzle.impact.user.dto.RoleCreateDto;
+import pl.puzzle.impact.user.dto.RoleUpdateDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,14 +33,14 @@ public class RoleController {
     }
 
     @PostMapping("/{userId}")
-    public ResponseEntity<Role> createRole(@RequestBody RoleCreateDTO roleCreateDTO, @PathVariable UUID userId) {
-        return ResponseEntity.ok(roleService.createRole(roleCreateDTO, userId));
+    public ResponseEntity<Role> createRole(@RequestBody RoleCreateDto roleCreateDto, @PathVariable UUID userId) {
+        return ResponseEntity.ok(roleService.createRole(roleCreateDto, userId));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Role> updateRole(@PathVariable UUID id, @RequestBody RoleUpdateDTO roleUpdateDTO) {
+    public ResponseEntity<Role> updateRole(@PathVariable UUID id, @RequestBody RoleUpdateDto roleUpdateDto) {
         try {
-            Role updatedRole = roleService.updateRole(id, roleUpdateDTO);
+            Role updatedRole = roleService.updateRole(id, roleUpdateDto);
             return ResponseEntity.ok(updatedRole);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

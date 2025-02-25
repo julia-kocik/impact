@@ -1,8 +1,8 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.user.dto.RoleCreateDTO;
-import pl.puzzle.impact.user.dto.RoleUpdateDTO;
+import pl.puzzle.impact.user.dto.RoleCreateDto;
+import pl.puzzle.impact.user.dto.RoleUpdateDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,14 +22,14 @@ private final RoleRepository roleRepository;
                 .toList();
     }
 
-    public Role createRole(RoleCreateDTO roleCreateDTO, UUID userId) {
-        Role role = Role.createRole(roleCreateDTO, userId);
+    public Role createRole(RoleCreateDto roleCreateDto, UUID userId) {
+        Role role = Role.createRole(roleCreateDto, userId);
         return roleRepository.save(role);
     }
 
-    public Role updateRole(UUID id, RoleUpdateDTO roleUpdateDTO) {
+    public Role updateRole(UUID id, RoleUpdateDto roleUpdateDto) {
         Role role = roleRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        role.updateRole(roleUpdateDTO);
+        role.updateRole(roleUpdateDto);
         roleRepository.save(role);
         return role;
     }

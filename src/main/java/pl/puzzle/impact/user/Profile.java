@@ -9,7 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.puzzle.impact.user.dto.ProfileUpdateDto;
-import pl.puzzle.impact.user.dto.UserCreateDTO;
+import pl.puzzle.impact.user.dto.UserCreateDto;
 
 import java.util.UUID;
 
@@ -35,19 +35,19 @@ public class Profile {
 
     private String profileImage;
 
-    public static Profile createProfile(UserCreateDTO profileCreateDTO, UUID userId) {
+    public static Profile createProfile(UserCreateDto profileCreateDto, UUID userId) {
         return Profile.builder()
                 .id(userId)
-                .username(profileCreateDTO.getUsername())
-                .email(profileCreateDTO.getEmail())
-                .password(profileCreateDTO.getPassword())
-                .profileImage(profileCreateDTO.getProfileImage())
+                .username(profileCreateDto.getUsername())
+                .email(profileCreateDto.getEmail())
+                .password(profileCreateDto.getPassword())
+                .profileImage(profileCreateDto.getProfileImage())
                 .build();
     }
 
-    void updateProfile(ProfileUpdateDto profileUpdateDTO) {
-        this.username = profileUpdateDTO.getUsername();
-        this.email = profileUpdateDTO.getEmail();
-        this.password = profileUpdateDTO.getPassword();
+    void updateProfile(ProfileUpdateDto profileUpdateDto) {
+        this.username = profileUpdateDto.getUsername();
+        this.email = profileUpdateDto.getEmail();
+        this.password = profileUpdateDto.getPassword();
     }
 }

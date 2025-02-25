@@ -1,6 +1,5 @@
 package pl.puzzle.impact.user;
 
-import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -8,8 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.puzzle.impact.user.dto.RoleCreateDTO;
-import pl.puzzle.impact.user.dto.RoleUpdateDTO;
+import pl.puzzle.impact.user.dto.RoleCreateDto;
+import pl.puzzle.impact.user.dto.RoleUpdateDto;
 
 import java.util.UUID;
 
@@ -29,11 +28,11 @@ public class Role {
 
     private String type;
 
-    public static Role createRole(RoleCreateDTO roleCreateDTO, UUID userId) {
+    public static Role createRole(RoleCreateDto roleCreateDto, UUID userId) {
         return Role.builder()
                 .id(UUID.randomUUID())
                 .userId(userId)
-                .type(roleCreateDTO.getType())
+                .type(roleCreateDto.getType())
                 .build();
     }
 
@@ -45,7 +44,7 @@ public class Role {
                 .build();
     }
 
-    void updateRole(RoleUpdateDTO roleUpdateDTO) {
-        this.type = roleUpdateDTO.getType();
+    void updateRole(RoleUpdateDto roleUpdateDto) {
+        this.type = roleUpdateDto.getType();
     }
 }

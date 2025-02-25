@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.puzzle.impact.company.CompanyDetails;
 import pl.puzzle.impact.company.CompanyDetailsService;
-import pl.puzzle.impact.company.dto.CompanyDetailsUpdateDTO;
+import pl.puzzle.impact.company.dto.CompanyDetailsUpdateDto;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -30,9 +30,9 @@ public class CompanyDetailsController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<CompanyDetails> updateCompanyDetails(@PathVariable UUID id, @RequestBody CompanyDetailsUpdateDTO companyDetailsUpdateDTO) {
+    public ResponseEntity<CompanyDetails> updateCompanyDetails(@PathVariable UUID id, @RequestBody CompanyDetailsUpdateDto companyDetailsUpdateDto) {
         try {
-            CompanyDetails updatedCompanyDetails = companyDetailsService.updateCompanyDetails(companyDetailsUpdateDTO, id);
+            CompanyDetails updatedCompanyDetails = companyDetailsService.updateCompanyDetails(companyDetailsUpdateDto, id);
             return ResponseEntity.ok(updatedCompanyDetails);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

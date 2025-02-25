@@ -18,9 +18,9 @@ public class ProfileService {
         return profileRepository.findById(id);
     }
 
-    public Profile updateProfile(UUID id, ProfileUpdateDto profileUpdateDTO) {
+    public Profile updateProfile(UUID id, ProfileUpdateDto profileUpdateDto) {
         Profile profile = profileRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        profile.updateProfile(profileUpdateDTO);
+        profile.updateProfile(profileUpdateDto);
         profileRepository.save(profile);
         return profile;
     }

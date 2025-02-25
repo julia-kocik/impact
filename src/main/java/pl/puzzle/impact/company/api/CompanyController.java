@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.puzzle.impact.company.Company;
 import pl.puzzle.impact.company.CompanyService;
 import pl.puzzle.impact.company.CreateCompanyService;
-import pl.puzzle.impact.company.dto.CompanyCreateDTO;
+import pl.puzzle.impact.company.dto.CompanyCreateDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +28,8 @@ public class CompanyController {
     }
 
     @PostMapping("/{userId}")
-    public ResponseEntity<Company> createCompany(@RequestBody CompanyCreateDTO companyCreateDTO, @PathVariable UUID userId) {
-        return ResponseEntity.ok(createCompanyService.createCompany(companyCreateDTO, userId));
+    public ResponseEntity<Company> createCompany(@RequestBody CompanyCreateDto companyCreateDto, @PathVariable UUID userId) {
+        return ResponseEntity.ok(createCompanyService.createCompany(companyCreateDto, userId));
     }
 
     @GetMapping

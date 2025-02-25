@@ -4,6 +4,6 @@ package pl.puzzle.impact.user.dto;
 import lombok.Getter;
 
 @Getter
-public class RoleCreateDTO {
+public class RoleCreateDto {
     private String type;
 }

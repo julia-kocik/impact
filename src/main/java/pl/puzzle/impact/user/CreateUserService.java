@@ -1,7 +1,7 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.user.dto.UserCreateDTO;
+import pl.puzzle.impact.user.dto.UserCreateDto;
 
 @Service
 public class CreateUserService {
@@ -15,11 +15,11 @@ public class CreateUserService {
         this.roleRepository = roleRepository;
     }
 
-    public User createUser(UserCreateDTO userCreateDTO) {
+    public User createUser(UserCreateDto userCreateDto) {
 
-        User user = User.createUser(userCreateDTO);
+        User user = User.createUser(userCreateDto);
         userRepository.save(user);
-        Profile profile = Profile.createProfile(userCreateDTO, user.getId());
+        Profile profile = Profile.createProfile(userCreateDto, user.getId());
         profileRepository.save(profile);
         Role role = Role.createRole(user.getId());
         roleRepository.save(role);

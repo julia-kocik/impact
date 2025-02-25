@@ -1,7 +1,7 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.user.dto.ActivateUserDTO;
+import pl.puzzle.impact.user.dto.ActivateUserDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,9 +24,9 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User updateUser(UUID id, ActivateUserDTO userUpdateDTO) {
+    public User updateUser(UUID id, ActivateUserDto userUpdateDto) {
         return userRepository.findById(id).map(user -> {
-            user.setActive(userUpdateDTO.isActive());
+            user.setActive(userUpdateDto.isActive());
             return userRepository.save(user);
         }).orElseThrow(() -> new RuntimeException("User not found"));
     }
