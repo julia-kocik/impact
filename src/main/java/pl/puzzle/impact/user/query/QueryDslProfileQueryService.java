@@ -1,10 +1,10 @@
 package pl.puzzle.impact.user.query;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
+import pl.puzzle.impact.common.BaseQueryDslQueryService;
 import pl.puzzle.impact.user.QProfile;
+import pl.puzzle.impact.user.QUser;
 import pl.puzzle.impact.user.query.dto.ProfileProjection;
 import pl.puzzle.impact.user.query.dto.QProfileProjection;
 
@@ -12,29 +12,26 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-class QueryDslProfileQueryService implements ProfileQueryService {
-
-    @PersistenceContext
-    private EntityManager entityManager;
+class QueryDslProfileQueryService extends BaseQueryDslQueryService implements ProfileQueryService {
 
     private static final QProfile profile = QProfile.profile;
+    private static final QUser user = QUser.user;
 
     QueryDslProfileQueryService(EntityManager entityManager) {
-        this.entityManager = entityManager;
+        super(entityManager);
     }
 
     @Override
     public Optional<ProfileProjection> getById(UUID profileId) {
-        var queryFactory = new JPAQueryFactory(entityManager);
-
-        var query = queryFactory.select(new QProfileProjection(
+        return Optional.ofNullable(queryFactory().select(new QProfileProjection(
                 profile.username,
                 profile.email,
-                profile.password
+                profile.password,
+                user.active
         ))
                 .from(profile)
-                .where(profile.id.eq(profileId));
-
-        return Optional.ofNullable(query.fetchOne());
+                .join(user).on(user.id.eq(profileId))
+                .where(profile.id.eq(profileId))
+                .fetchOne());
     }
 }
