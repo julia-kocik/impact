@@ -1,8 +1,9 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
+import pl.puzzle.impact.common.exceptions.EmailNotFoundException;
 import pl.puzzle.impact.common.exceptions.InvalidTokenException;
-import pl.puzzle.impact.common.exceptions.NotFoundException;
+import pl.puzzle.impact.common.exceptions.UserNotFoundException;
 import pl.puzzle.impact.user.dto.SendTokenDto;
 import pl.puzzle.impact.user.dto.UserCreateDto;
 
@@ -34,13 +35,13 @@ public class CreateUserService {
     }
 
     public Token sendToken(SendTokenDto sendTokenDto) {
-        Profile profile = profileRepository.findByEmail(sendTokenDto.email()).orElseThrow(() ->  new NotFoundException(("Email not found")));
+        Profile profile = profileRepository.findByEmail(sendTokenDto.email()).orElseThrow(EmailNotFoundException::new);
         return tokenService.sendToken(profile.getId(), sendTokenDto.type());
     }
 
     public User activateUser(String token, UUID userId) {
         if(!tokenService.validateToken(token)) {
-            throw new InvalidTokenException("Invalid token");
+            throw new InvalidTokenException();
         }
 
         return userRepository.findById(userId)
@@ -48,7 +49,7 @@ public class CreateUserService {
                     user.activateAccount();
                     return userRepository.save(user);
                 })
-                .orElseThrow(() -> new NotFoundException("User not found"));
+                .orElseThrow(UserNotFoundException::new);
     }
 
 }

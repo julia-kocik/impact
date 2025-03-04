@@ -1,11 +1,12 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
+import pl.puzzle.impact.common.exceptions.EmailNotFoundException;
 import pl.puzzle.impact.common.exceptions.IncorrectPasswordException;
 import pl.puzzle.impact.user.dto.SendTokenDto;
 import pl.puzzle.impact.user.dto.ChangePasswordDto;
 import pl.puzzle.impact.user.dto.ProfileUpdateDto;
-import pl.puzzle.impact.common.exceptions.NotFoundException;
+import pl.puzzle.impact.common.exceptions.UserNotFoundException;
 import pl.puzzle.impact.user.dto.ResetPasswordDto;
 
 import java.util.Optional;
@@ -27,21 +28,21 @@ public class ProfileService {
     }
 
     public Token sendToken(SendTokenDto sendTokenDto) {
-        Profile profile = profileRepository.findByEmail(sendTokenDto.email()).orElseThrow(() -> new NotFoundException("Email not found"));
+        Profile profile = profileRepository.findByEmail(sendTokenDto.email()).orElseThrow(EmailNotFoundException::new);
         return tokenService.sendToken(profile.getId(), sendTokenDto.type());
     }
 
     public Profile updateProfile(UUID id, ProfileUpdateDto profileUpdateDto) {
-        Profile profile = profileRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        Profile profile = profileRepository.findById(id).orElseThrow(UserNotFoundException::new);
         profile.updateProfile(profileUpdateDto);
         profileRepository.save(profile);
         return profile;
     }
 
     public Profile changePassword(UUID id, ChangePasswordDto changePasswordDto) {
-        Profile profile = profileRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        Profile profile = profileRepository.findById(id).orElseThrow(UserNotFoundException::new);
         if (!changePasswordDto.oldPassword().equals(profile.getPassword())) {
-            throw new IncorrectPasswordException("Incorrect password provided");
+            throw new IncorrectPasswordException();
         }
 
         profile.changePassword(changePasswordDto.newPassword());
@@ -50,7 +51,7 @@ public class ProfileService {
     }
 
     public Profile resetPassword(UUID id, ResetPasswordDto resetPasswordDto) {
-        Profile profile = profileRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        Profile profile = profileRepository.findById(id).orElseThrow(UserNotFoundException::new);
         profile.changePassword(resetPasswordDto.newPassword());
         profileRepository.save(profile);
         return profile;
