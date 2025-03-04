@@ -39,11 +39,7 @@ public class RoleController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Role> updateRole(@PathVariable UUID id, @RequestBody RoleUpdateDto roleUpdateDto) {
-        try {
-            Role updatedRole = roleService.updateRole(id, roleUpdateDto);
-            return ResponseEntity.ok(updatedRole);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Role updatedRole = roleService.updateRole(id, roleUpdateDto);
+        return ResponseEntity.ok(updatedRole);
     }
 }

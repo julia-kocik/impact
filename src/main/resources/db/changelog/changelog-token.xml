@@ -4,12 +4,14 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="role-1" author="jkocik">
-        <createTable tableName="role">
+    <changeSet id="token-1" author="jkocik">
+        <createTable tableName="token">
             <column name="id" type="uuid">
-                <constraints nullable="false" primaryKeyName="pk_role_id" primaryKey="true"/>
+                <constraints nullable="false" primaryKeyName="pk_token_id" primaryKey="true"/>
             </column>
             <column name="user_id" type="uuid"/>
+            <column name="token_code" type="varchar"/>
+            <column name="expiry_date" type="timestamp"/>
             <column name="type" type="varchar"/>
         </createTable>
     </changeSet>
