@@ -1,18 +1,23 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
+import pl.puzzle.impact.user.dto.SendTokenDto;
 import pl.puzzle.impact.user.dto.UserCreateDto;
+
+import java.util.UUID;
 
 @Service
 public class CreateUserService {
     private final ProfileRepository profileRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final TokenService tokenService;
 
-    public CreateUserService(ProfileRepository profileRepository, UserRepository userRepository, RoleRepository roleRepository) {
+    public CreateUserService(ProfileRepository profileRepository, UserRepository userRepository, RoleRepository roleRepository, TokenService tokenService) {
         this.profileRepository = profileRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.tokenService = tokenService;
     }
 
     public User createUser(UserCreateDto userCreateDto) {
@@ -25,4 +30,23 @@ public class CreateUserService {
         roleRepository.save(role);
         return user;
     }
+
+    public Token sendToken(SendTokenDto sendTokenDto) {
+        Profile profile = profileRepository.findByEmail(sendTokenDto.email()).orElseThrow(() ->  new RuntimeException(("Email not found")));
+        return tokenService.sendToken(profile.getId(), sendTokenDto.type());
+    }
+
+    public User activateUser(String token, UUID userId) {
+        if(!tokenService.validateToken(token)) {
+            throw new RuntimeException("Invalid token");
+        }
+
+        return userRepository.findById(userId)
+                .map(user -> {
+                    user.activateAccount();
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
 }

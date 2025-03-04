@@ -7,6 +7,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-interface ProfileRepository extends JpaRepository<pl.puzzle.impact.user.Profile, UUID> {
-    Optional<Profile> findByEmail(String email);
+interface TokenRepository extends JpaRepository<Token, UUID> {
+    Optional<Token> findByTokenCode(String tokenCode);
 }

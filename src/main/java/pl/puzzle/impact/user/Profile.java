@@ -50,4 +50,8 @@ public class Profile {
         this.email = profileUpdateDto.getEmail();
         this.password = profileUpdateDto.getPassword();
     }
+
+   public void changePassword(String password) {
+        this.password = password;
+    }
 }

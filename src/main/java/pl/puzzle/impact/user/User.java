@@ -37,8 +37,8 @@ public class User {
                 .build();
     }
 
-    void setActive(boolean active) {
-        this.active = active;
+    public void activateAccount() {
+        this.active = true;
     }
 
 }
