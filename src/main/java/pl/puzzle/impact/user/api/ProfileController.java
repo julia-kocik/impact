@@ -22,6 +22,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/profile")
 public class ProfileController {
+
     private final ProfileService profileService;
     private final TokenService tokenService;
 

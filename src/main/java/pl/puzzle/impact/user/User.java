@@ -40,5 +40,4 @@ public class User {
     public void activateAccount() {
         this.active = true;
     }
-
 }

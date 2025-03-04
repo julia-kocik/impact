@@ -1,4 +1,4 @@
-package pl.puzzle.impact.common.exceptions;
+package pl.puzzle.impact.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

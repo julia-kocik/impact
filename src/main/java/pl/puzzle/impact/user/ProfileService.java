@@ -1,20 +1,20 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.common.exceptions.EmailNotFoundException;
-import pl.puzzle.impact.common.exceptions.IncorrectPasswordException;
+import pl.puzzle.impact.common.exception.EmailNotFoundException;
+import pl.puzzle.impact.common.exception.IncorrectPasswordException;
 import pl.puzzle.impact.user.dto.SendTokenDto;
 import pl.puzzle.impact.user.dto.ChangePasswordDto;
 import pl.puzzle.impact.user.dto.ProfileUpdateDto;
-import pl.puzzle.impact.common.exceptions.UserNotFoundException;
+import pl.puzzle.impact.common.exception.UserNotFoundException;
 import pl.puzzle.impact.user.dto.ResetPasswordDto;
-
 import java.util.Optional;
 import java.util.UUID;
 
 //todo exception subjects to change
 @Service
 public class ProfileService {
+
     private final ProfileRepository profileRepository;
     private final TokenService tokenService;
 

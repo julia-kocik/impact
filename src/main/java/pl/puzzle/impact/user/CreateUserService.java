@@ -1,12 +1,11 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.common.exceptions.EmailNotFoundException;
-import pl.puzzle.impact.common.exceptions.InvalidTokenException;
-import pl.puzzle.impact.common.exceptions.UserNotFoundException;
+import pl.puzzle.impact.common.exception.EmailNotFoundException;
+import pl.puzzle.impact.common.exception.InvalidTokenException;
+import pl.puzzle.impact.common.exception.UserNotFoundException;
 import pl.puzzle.impact.user.dto.SendTokenDto;
 import pl.puzzle.impact.user.dto.UserCreateDto;
-
 import java.util.UUID;
 
 @Service

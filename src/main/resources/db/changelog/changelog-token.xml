@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="token-1" author="tkosinski">
+    <changeSet id="token-1" author="jkocik">
         <createTable tableName="token">
             <column name="id" type="uuid">
                 <constraints nullable="false" primaryKeyName="pk_token_id" primaryKey="true"/>
