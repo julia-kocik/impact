@@ -1,9 +1,11 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
+import pl.puzzle.impact.common.exceptions.IncorrectPasswordException;
 import pl.puzzle.impact.user.dto.SendTokenDto;
 import pl.puzzle.impact.user.dto.ChangePasswordDto;
 import pl.puzzle.impact.user.dto.ProfileUpdateDto;
+import pl.puzzle.impact.common.exceptions.NotFoundException;
 import pl.puzzle.impact.user.dto.ResetPasswordDto;
 
 import java.util.Optional;
@@ -25,21 +27,21 @@ public class ProfileService {
     }
 
     public Token sendToken(SendTokenDto sendTokenDto) {
-        Profile profile = profileRepository.findByEmail(sendTokenDto.email()).orElseThrow(() ->  new RuntimeException(("Email not found")));
+        Profile profile = profileRepository.findByEmail(sendTokenDto.email()).orElseThrow(() -> new NotFoundException("Email not found"));
         return tokenService.sendToken(profile.getId(), sendTokenDto.type());
     }
 
     public Profile updateProfile(UUID id, ProfileUpdateDto profileUpdateDto) {
-        Profile profile = profileRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        Profile profile = profileRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
         profile.updateProfile(profileUpdateDto);
         profileRepository.save(profile);
         return profile;
     }
 
     public Profile changePassword(UUID id, ChangePasswordDto changePasswordDto) {
-        Profile profile = profileRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        Profile profile = profileRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
         if (!changePasswordDto.oldPassword().equals(profile.getPassword())) {
-            throw new RuntimeException("Incorrect password");
+            throw new IncorrectPasswordException("Incorrect password provided");
         }
 
         profile.changePassword(changePasswordDto.newPassword());
@@ -48,7 +50,7 @@ public class ProfileService {
     }
 
     public Profile resetPassword(UUID id, ResetPasswordDto resetPasswordDto) {
-        Profile profile = profileRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        Profile profile = profileRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
         profile.changePassword(resetPasswordDto.newPassword());
         profileRepository.save(profile);
         return profile;

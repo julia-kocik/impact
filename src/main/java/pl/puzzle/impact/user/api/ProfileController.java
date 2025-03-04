@@ -32,22 +32,15 @@ public class ProfileController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Profile> updateProfile(@PathVariable UUID id, @RequestBody ProfileUpdateDto profileUpdateDto) {
-        try {
-            Profile updatedProfile = profileService.updateProfile(id, profileUpdateDto);
-            return ResponseEntity.ok(updatedProfile);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Profile updatedProfile = profileService.updateProfile(id, profileUpdateDto);
+        return ResponseEntity.ok(updatedProfile);
     }
 
     @PatchMapping("/change-password/{id}")
     public ResponseEntity<Profile> changePassword(@PathVariable UUID id, @RequestBody ChangePasswordDto changePasswordDto) {
-        try {
-            Profile profileAfterPasswordChange = profileService.changePassword(id, changePasswordDto);
-            return ResponseEntity.ok(profileAfterPasswordChange);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Profile profileAfterPasswordChange = profileService.changePassword(id, changePasswordDto);
+        return ResponseEntity.ok(profileAfterPasswordChange);
+
     }
 
     // sendToken
@@ -65,12 +58,8 @@ public class ProfileController {
     // reset
     @PatchMapping("/reset-password/{id}")
     public ResponseEntity<Profile> resetPassword(@PathVariable UUID id, @RequestBody ResetPasswordDto resetPasswordDto) {
-        try {
-            Profile profileAfterPasswordReset = profileService.resetPassword(id, resetPasswordDto);
-            return ResponseEntity.ok(profileAfterPasswordReset);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        Profile profileAfterPasswordReset = profileService.resetPassword(id, resetPasswordDto);
+        return ResponseEntity.ok(profileAfterPasswordReset);
     }
 
 }

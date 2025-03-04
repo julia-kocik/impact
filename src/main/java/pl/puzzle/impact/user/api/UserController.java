@@ -40,8 +40,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable UUID id) {
         Optional<User> user = userService.getUserById(id);
-        return user.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -56,12 +55,8 @@ public class UserController {
 
     @GetMapping("/activate-user/{token}/{userId}")
     public ResponseEntity<User> activateUser(@PathVariable String token, @PathVariable UUID userId) {
-        try {
-            User updatedUser = createUserService.activateUser(token, userId);
-            return ResponseEntity.ok(updatedUser);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        User updatedUser = createUserService.activateUser(token, userId);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{id}")
