@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.puzzle.impact.user.CreateUserService;
-import pl.puzzle.impact.user.Token;
 import pl.puzzle.impact.user.User;
 import pl.puzzle.impact.user.UserService;
-import pl.puzzle.impact.user.dto.SendTokenDto;
 import pl.puzzle.impact.user.dto.UserCreateDto;
 
 import java.util.List;
@@ -48,14 +46,9 @@ public class UserController {
         return ResponseEntity.ok(createUserService.createUser(userCreateDto));
     }
 
-    @PostMapping("/start-activate")
-    public ResponseEntity<Token> sendToken(@RequestBody SendTokenDto sendTokenDto) {
-        return ResponseEntity.ok(createUserService.sendToken(sendTokenDto));
-    }
-
-    @GetMapping("/activate-user/{token}/{userId}")
-    public ResponseEntity<User> activateUser(@PathVariable String token, @PathVariable UUID userId) {
-        User updatedUser = createUserService.activateUser(token, userId);
+    @GetMapping("/activate-user/{token}")
+    public ResponseEntity<User> activateUser(@PathVariable String token) {
+        User updatedUser = createUserService.activateUser(token);
         return ResponseEntity.ok(updatedUser);
     }
 

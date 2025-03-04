@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.puzzle.impact.token.TokenService;
 import pl.puzzle.impact.user.Profile;
 import pl.puzzle.impact.user.ProfileService;
-import pl.puzzle.impact.user.Token;
-import pl.puzzle.impact.user.TokenService;
 import pl.puzzle.impact.user.dto.ChangePasswordDto;
 import pl.puzzle.impact.user.dto.ProfileUpdateDto;
 import pl.puzzle.impact.user.dto.ResetPasswordDto;
-import pl.puzzle.impact.user.dto.SendTokenDto;
 
 import java.util.UUID;
+
+import static pl.puzzle.impact.token.TokenType.PASSWORD_RESET;
 
 @RestController
 @RequestMapping("/profile")
@@ -46,14 +46,14 @@ public class ProfileController {
 
     // sendToken
     @PostMapping("/start-reset")
-    public ResponseEntity<Token> sendToken(@RequestBody SendTokenDto sendTokenDto) {
-        return ResponseEntity.ok(profileService.sendToken(sendTokenDto));
+    public void requestPasswordReset(@RequestBody String email) {
+        profileService.requestPasswordReset(email);
     }
 
     // after validation redirect to password reset view
     @GetMapping("reset-password/{tokenCode}")
     public boolean validateToken(@PathVariable String tokenCode) {
-        return tokenService.validateToken(tokenCode);
+        return tokenService.validate(tokenCode, PASSWORD_RESET);
     }
 
     // reset
