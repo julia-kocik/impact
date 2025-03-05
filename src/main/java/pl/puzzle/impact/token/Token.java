@@ -52,6 +52,7 @@ public class Token {
         if (LocalDateTime.now().isAfter(expiryDate)) {
             throw new InvalidTokenException();
         }
+
         return userId;
     }
 }
