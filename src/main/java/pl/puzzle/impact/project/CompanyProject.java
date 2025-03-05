@@ -7,13 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import java.util.UUID;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
-@Table(name="company_project")
+@Table(name = "company_project")
 @NoArgsConstructor(access = PRIVATE, force = true)
 @AllArgsConstructor(access = PRIVATE)
 @Builder

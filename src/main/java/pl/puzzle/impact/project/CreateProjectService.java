@@ -2,7 +2,6 @@ package pl.puzzle.impact.project;
 
 import org.springframework.stereotype.Service;
 import pl.puzzle.impact.project.dto.ProjectCreateRequest;
-
 import java.util.UUID;
 
 @Service
