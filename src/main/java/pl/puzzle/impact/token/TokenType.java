@@ -1,4 +1,4 @@
-package pl.puzzle.impact.user;
+package pl.puzzle.impact.token;
 
 public enum TokenType {
     ACTIVATION,

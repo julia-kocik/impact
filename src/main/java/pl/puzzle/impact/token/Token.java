@@ -1,4 +1,4 @@
-package pl.puzzle.impact.user;
+package pl.puzzle.impact.token;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,6 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.puzzle.impact.common.exception.InvalidTokenException;
+import pl.puzzle.impact.token.dto.TokenRequest;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -33,13 +36,24 @@ public class Token {
     @Enumerated(EnumType.STRING)
     private TokenType type;
 
-    public static Token createToken(UUID userId, TokenType type) {
+    public static Token createToken(TokenRequest request) {
         return Token.builder()
                 .id(UUID.randomUUID())
-                .userId(userId)
+                .userId(request.userId())
                 .tokenCode(UUID.randomUUID().toString().replace("-", ""))
                 .expiryDate(LocalDateTime.now().plusMinutes(10))
-                .type(type)
+                .type(request.type())
                 .build();
+    }
+
+    public boolean isValid() {
+        return LocalDateTime.now().isBefore(expiryDate);
+    }
+
+    public UUID getUserIdIfValid() {
+        if (LocalDateTime.now().isAfter(expiryDate)) {
+            throw new InvalidTokenException();
+        }
+        return userId;
     }
 }
