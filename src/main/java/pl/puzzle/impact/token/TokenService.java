@@ -3,7 +3,6 @@ package pl.puzzle.impact.token;
 import org.springframework.stereotype.Service;
 import pl.puzzle.impact.common.exception.TokenNotFoundException;
 import pl.puzzle.impact.token.dto.TokenRequest;
-
 import java.util.Optional;
 import java.util.UUID;
 
