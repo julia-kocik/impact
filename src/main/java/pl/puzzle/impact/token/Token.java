@@ -11,10 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.puzzle.impact.common.exception.InvalidTokenException;
 import pl.puzzle.impact.token.dto.TokenRequest;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @Entity
