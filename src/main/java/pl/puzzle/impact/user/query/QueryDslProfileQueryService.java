@@ -7,7 +7,6 @@ import pl.puzzle.impact.user.QProfile;
 import pl.puzzle.impact.user.QUser;
 import pl.puzzle.impact.user.query.dto.ProfileProjection;
 import pl.puzzle.impact.user.query.dto.QProfileProjection;
-
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,11 +23,12 @@ class QueryDslProfileQueryService extends BaseQueryDslQueryService implements Pr
     @Override
     public Optional<ProfileProjection> getById(UUID profileId) {
         return Optional.ofNullable(queryFactory().select(new QProfileProjection(
-                profile.username,
-                profile.email,
-                profile.password,
-                user.active
-        ))
+                        profile.username,
+                        profile.email,
+                        profile.password,
+                        user.active,
+                        profile.profileImage
+                ))
                 .from(profile)
                 .join(user).on(user.id.eq(profileId))
                 .where(profile.id.eq(profileId))
