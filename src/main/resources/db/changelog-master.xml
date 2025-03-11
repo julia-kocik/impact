@@ -11,4 +11,7 @@
     <include file="/db/changelog/changelog-company_details.xml"/>
     <include file="/db/changelog/changelog-role.xml"/>
     <include file="/db/changelog/changelog-token.xml"/>
+    <include file="/db/changelog/changelog-project.xml"/>
+    <include file="/db/changelog/changelog-project_details.xml"/>
+    <include file="/db/changelog/changelog-company_project.xml"/>
 </databaseChangeLog>

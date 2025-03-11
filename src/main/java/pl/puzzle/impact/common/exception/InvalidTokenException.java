@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class InvalidTokenException extends RuntimeException {
-    public InvalidTokenException() {
-        super("Invalid token");
+    public InvalidTokenException(ErrorMessage message) {
+        super(message.toString());
     }
 }
