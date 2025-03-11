@@ -1,9 +1,11 @@
 package pl.puzzle.impact.project.query.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
+
 import java.time.LocalDateTime;
 
 public class ProjectDetailsProjection {
+    
     private final boolean isFeatured;
 
     private final String name;

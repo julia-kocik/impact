@@ -1,7 +1,8 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.common.exception.UserNotFoundException;
+import pl.puzzle.impact.common.exception.ErrorMessage;
+import pl.puzzle.impact.common.exception.NotFoundException;
 import pl.puzzle.impact.user.dto.RoleCreateDto;
 import pl.puzzle.impact.user.dto.RoleUpdateDto;
 
@@ -29,7 +30,7 @@ private final RoleRepository roleRepository;
     }
 
     public Role updateRole(UUID id, RoleUpdateDto roleUpdateDto) {
-        Role role = roleRepository.findById(id).orElseThrow(UserNotFoundException::new);
+        Role role = roleRepository.findById(id).orElseThrow(() -> new NotFoundException(ErrorMessage.USER_NOT_FOUND));
         role.updateRole(roleUpdateDto);
         roleRepository.save(role);
         return role;

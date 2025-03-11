@@ -1,7 +1,8 @@
 package pl.puzzle.impact.user;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.common.exception.UserNotFoundException;
+import pl.puzzle.impact.common.exception.ErrorMessage;
+import pl.puzzle.impact.common.exception.NotFoundException;
 import pl.puzzle.impact.token.TokenService;
 import pl.puzzle.impact.user.dto.UserCreateDto;
 
@@ -9,6 +10,7 @@ import static pl.puzzle.impact.token.TokenType.ACTIVATION;
 
 @Service
 public class CreateUserService {
+
     private final ProfileRepository profileRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -40,6 +42,6 @@ public class CreateUserService {
                     user.activateAccount();
                     return userRepository.save(user);
                 })
-                .orElseThrow(UserNotFoundException::new);
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.USER_NOT_FOUND));
     }
 }

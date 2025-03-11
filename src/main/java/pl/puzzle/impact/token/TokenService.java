@@ -1,13 +1,15 @@
 package pl.puzzle.impact.token;
 
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.common.exception.TokenNotFoundException;
+import pl.puzzle.impact.common.exception.ErrorMessage;
+import pl.puzzle.impact.common.exception.NotFoundException;
 import pl.puzzle.impact.token.dto.TokenRequest;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class TokenService {
+
     private final TokenRepository tokenRepository;
 
     public TokenService(TokenRepository tokenRepository) {
@@ -25,7 +27,7 @@ public class TokenService {
         Optional<Token> tokenOpt = tokenRepository.findByTokenCodeAndType(tokenCode, type);
 
         if (tokenOpt.isEmpty()) {
-            throw new TokenNotFoundException();
+            throw new NotFoundException(ErrorMessage.TOKEN_NOT_FOUND);
         }
 
         return tokenOpt.get().getUserIdIfValid();
