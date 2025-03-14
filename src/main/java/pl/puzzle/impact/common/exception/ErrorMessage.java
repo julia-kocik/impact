@@ -7,7 +7,8 @@ public enum ErrorMessage {
     PROJECT_NOT_FOUND("Project not found"),
     TOKEN_NOT_FOUND("Token not found"),
     INCORRECT_PASSWORD("Incorrect password"),
-    INVALID_TOKEN("Invalid token");
+    INVALID_TOKEN("Invalid token"),
+    IMAGE_NOT_FOUND("Image not found");
 
     private final String message;
 
