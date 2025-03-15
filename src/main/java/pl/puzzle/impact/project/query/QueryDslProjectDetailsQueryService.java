@@ -3,7 +3,6 @@ package pl.puzzle.impact.project.query;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Service;
 import pl.puzzle.impact.common.BaseQueryDslQueryService;
-import pl.puzzle.impact.project.CompanyProjectService;
 import pl.puzzle.impact.project.QCompanyProject;
 import pl.puzzle.impact.project.QProjectDetails;
 import pl.puzzle.impact.project.query.dto.ProjectDetailsProjection;
@@ -26,6 +25,7 @@ public class QueryDslProjectDetailsQueryService extends BaseQueryDslQueryService
     @Override
     public List<ProjectDetailsProjection> getAllProjects() {
         return queryFactory().select(new QProjectDetailsProjection(
+                        projectDetails.id,
                         projectDetails.isFeatured,
                         projectDetails.name,
                         projectDetails.startDate,
@@ -39,6 +39,7 @@ public class QueryDslProjectDetailsQueryService extends BaseQueryDslQueryService
     @Override
     public Optional<ProjectDetailsProjection> getById(UUID projectId) {
         return Optional.ofNullable(queryFactory().select(new QProjectDetailsProjection(
+                        projectDetails.id,
                         projectDetails.isFeatured,
                         projectDetails.name,
                         projectDetails.startDate,
@@ -53,6 +54,7 @@ public class QueryDslProjectDetailsQueryService extends BaseQueryDslQueryService
     @Override
     public List<ProjectDetailsProjection> getProjectsByCompanyId(UUID companyId) {
         return queryFactory().select(new QProjectDetailsProjection(
+                        projectDetails.id,
                         projectDetails.isFeatured,
                         projectDetails.name,
                         projectDetails.startDate,
