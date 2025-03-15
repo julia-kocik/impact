@@ -19,6 +19,7 @@ class QueryDslImageQueryService extends BaseQueryDslQueryService implements Imag
     public QueryDslImageQueryService(EntityManager entityManager) {
         super(entityManager);
     }
+
     @Override
     public Optional<ImageProjection> getById(UUID imageId) {
         return Optional.ofNullable(queryFactory().select(new QImageProjection(
