@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="comment-1" author="jkocik">
+        <createTable tableName="comment">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKeyName="pk_comment_id" primaryKey="true"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="entity_id" type="uuid"/>
+            <column name="entity_type" type="varchar"/>
+            <column name="content" type="varchar"/>
+            <column name="parent_id" type="uuid"/>
+            <column name="user_id" type="uuid"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
