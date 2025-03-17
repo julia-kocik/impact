@@ -16,4 +16,5 @@
     <include file="/db/changelog/changelog-company_project.xml"/>
     <include file="/db/changelog/changelog-image.xml"/>
     <include file="/db/changelog/changelog-favourite_project.xml"/>
+    <include file="/db/changelog/changelog-comment.xml"/>
 </databaseChangeLog>
