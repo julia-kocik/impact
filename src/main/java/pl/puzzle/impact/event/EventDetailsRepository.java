@@ -1,8 +1,9 @@
-package pl.puzzle.impact.project;
+package pl.puzzle.impact.event;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-interface ProjectRepository extends JpaRepository<Project, UUID> {}
+public interface EventDetailsRepository extends JpaRepository<EventDetails, UUID> {
+}

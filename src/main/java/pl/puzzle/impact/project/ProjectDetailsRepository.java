@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-interface ProjectDetailsRepository extends JpaRepository<pl.puzzle.impact.project.ProjectDetails, UUID> {}
+interface ProjectDetailsRepository extends JpaRepository<ProjectDetails, UUID> {}

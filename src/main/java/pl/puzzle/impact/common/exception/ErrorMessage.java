@@ -8,7 +8,8 @@ public enum ErrorMessage {
     TOKEN_NOT_FOUND("Token not found"),
     INCORRECT_PASSWORD("Incorrect password"),
     INVALID_TOKEN("Invalid token"),
-    IMAGE_NOT_FOUND("Image not found");
+    IMAGE_NOT_FOUND("Image not found"),
+    EVENT_NOT_FOUND("Event not found");
 
     private final String message;
 

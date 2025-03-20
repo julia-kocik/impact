@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="event_details-1" author="jkocik">
+        <createTable tableName="event_details">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKeyName="pk_event_details_id" primaryKey="true"/>
+            </column>
+            <column name="is_featured" type="boolean"/>
+            <column name="name" type="varchar"/>
+            <column name="start_date" type="timestamp"/>
+            <column name="end_date" type="timestamp"/>
+            <column name="description" type="varchar"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
