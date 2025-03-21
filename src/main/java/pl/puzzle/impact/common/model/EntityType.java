@@ -1,13 +1,15 @@
-package pl.puzzle.impact.comment;
+package pl.puzzle.impact.common.model;
 
-public enum CommentEntityType {
+public enum EntityType {
+
+    COMPANY("company"),
     PROJECT("project"),
-    COMPANY("company");
+    EVENT("event");
 
     private final String message;
 
 
-    CommentEntityType(String message) {
+    EntityType(String message) {
         this.message = message;
     }
 

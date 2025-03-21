@@ -1,11 +1,11 @@
 package pl.puzzle.impact.comment.dto;
-import pl.puzzle.impact.comment.CommentEntityType;
+import pl.puzzle.impact.common.model.EntityType;
 
 import java.util.UUID;
 
 public record CommentCreateRequest(
         UUID entityId,
-        CommentEntityType entityType,
+        EntityType entityType,
         String content,
         UUID userId,
         UUID parentId

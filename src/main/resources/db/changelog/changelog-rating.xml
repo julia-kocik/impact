@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="rating-1" author="tkosinski">
+        <createTable tableName="rating">
+            <column name="id" type="uuid">
+                <constraints nullable="false" unique="true" primaryKeyName="pk_rating_id" primaryKey="true"/>
+            </column>
+
+            <column name="source_type" type="varchar(50)"/>
+            <column name="source_id" type="uuid"/>
+
+            <column name="user_id" type="uuid"/>
+
+            <column name="category" type="varchar(50)"/>
+            <column name="score" type="tinyint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

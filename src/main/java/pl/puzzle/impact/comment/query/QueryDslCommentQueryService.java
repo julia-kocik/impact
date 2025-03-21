@@ -2,7 +2,7 @@ package pl.puzzle.impact.comment.query;
 
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Service;
-import pl.puzzle.impact.comment.CommentEntityType;
+import pl.puzzle.impact.common.model.EntityType;
 import pl.puzzle.impact.comment.QComment;
 import pl.puzzle.impact.comment.query.dto.CommentProjection;
 import pl.puzzle.impact.comment.query.dto.CommentTreeNodeProjection;
@@ -25,7 +25,7 @@ class QueryDslCommentQueryService extends BaseQueryDslQueryService implements Co
     }
 
     @Override
-    public List<CommentProjection> getAllCommentsForEntity(UUID entityId, CommentEntityType entityType) {
+    public List<CommentProjection> getAllCommentsForEntity(UUID entityId, EntityType entityType) {
 
         return queryFactory().select(new QCommentProjection(
                         comment.id,
@@ -42,7 +42,7 @@ class QueryDslCommentQueryService extends BaseQueryDslQueryService implements Co
                 .fetch();
     }
 
-    public List<CommentTreeNodeProjection> getCommentTree(UUID entityId, CommentEntityType entityType) {
+    public List<CommentTreeNodeProjection> getCommentTree(UUID entityId, EntityType entityType) {
         List<CommentProjection> comments = getAllCommentsForEntity(entityId, entityType);
         return buildCommentTree(comments);
     }
