@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.puzzle.impact.comment.CommentEntityType;
+import pl.puzzle.impact.common.model.EntityType;
 import pl.puzzle.impact.comment.query.CommentQueryService;
 import pl.puzzle.impact.comment.query.dto.CommentTreeNodeProjection;
 
@@ -24,7 +24,7 @@ public class CommentQueryController {
 
     @GetMapping("/{entityType}/{entityId}")
     public ResponseEntity<List<CommentTreeNodeProjection>> getCommentsTree(
-            @PathVariable CommentEntityType entityType,
+            @PathVariable EntityType entityType,
             @PathVariable UUID entityId) {
         List<CommentTreeNodeProjection> commentTree = commentQueryService.getCommentTree(entityId, entityType);
         return ResponseEntity.ok(commentTree);

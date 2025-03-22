@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.puzzle.impact.comment.dto.CommentCreateRequest;
+import pl.puzzle.impact.common.model.EntityType;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -32,7 +33,7 @@ public class Comment {
     private final UUID entityId; // ID of Project/Company
 
     @Enumerated(EnumType.STRING)
-    private CommentEntityType entityType;
+    private EntityType entityType;
 
     private String content;
 
