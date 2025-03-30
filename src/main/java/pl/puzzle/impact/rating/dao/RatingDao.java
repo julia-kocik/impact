@@ -1,8 +1,10 @@
 package pl.puzzle.impact.rating.dao;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import pl.puzzle.impact.rating.dto.RatingCreationRequest;
+import pl.puzzle.impact.rating.event.RatingCreatedEvent;
 
 import java.util.UUID;
 
@@ -11,8 +13,17 @@ import java.util.UUID;
 public class RatingDao {
 
     private final RatingRepository repository;
+    private final ApplicationEventPublisher publisher;
 
     public UUID create(RatingCreationRequest request) {
-        return repository.save(new Rating(request)).getId();
+        var rating = repository.save(new Rating(request));
+
+        publisher.publishEvent(new RatingCreatedEvent(rating.sourceId, rating.getSourceType()));
+
+        return rating.getId();
+    }
+
+    float getAverageRatingFor(UUID sourceId) {
+        return repository.getAverageRatingFor(sourceId);
     }
 }

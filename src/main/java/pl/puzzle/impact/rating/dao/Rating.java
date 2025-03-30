@@ -26,7 +26,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "rating")
 @AllArgsConstructor(access = PRIVATE)
 @NoArgsConstructor(access = PRIVATE)
-public class Rating {
+class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
